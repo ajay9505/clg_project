@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activities Details</title>
+    <style>
+        /* Neumorphism CSS */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #073f8c;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background-color: #e0e5ec;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+        }
+        header h1 {
+            color: #333;
+            margin: 0;
+        }
+        nav {
+            background-color: #e0e5ec;
+            padding: 15px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        nav a {
+            text-decoration: none;
+            color: rgb(21, 20, 20);
+            padding: 10px 15px;
+            border-radius: 10px;
+            background-color: #e0e5ec;
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.6), -4px -4px 8px rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.6), inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+        }
+        section {
+            background-color: #e0e5ec;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+            width: 80%;
+            max-width: 800px;
+        }
+        h2 {
+            color: #003366;
+            margin-top: 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #e0e5ec;
+            border-radius: 10px;
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.6), -4px -4px 8px rgba(255, 255, 255, 0.5);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Activities Details</h1>
+    </header>
+    <nav>
+        <a href="#" onclick="showSection('placement')">Placement</a>
+        <a href="#" onclick="showSection('nss')">NSS</a>
+        <a href="#" onclick="showSection('yds')">YDS</a>
+        <a href="#" onclick="showSection('yrc')">YRC</a>
+        <a href="#" onclick="showSection('rrc')">RRC</a>
+        <a href="#" onclick="showSection('exnora')">Exnora</a>
+        <a href="#" onclick="showSection('consumer-club')">Consumer Club</a>
+        <a href="#" onclick="showSection('alumni')">Alumni</a>
+    </nav>
+
+    <!-- Placement Section -->
+    <section id="placement">
+        <h2>Placement</h2>
+        <ul>
+            <li>Regular placement drives with top companies.</li>
+            <li>Training programs for skill development.</li>
+            <li>Career counseling and guidance.</li>
+            <li>Placement records: 90% placement rate in 2022.</li>
+        </ul>
+    </section>
+
+    <!-- NSS Section -->
+    <section id="nss" class="hidden">
+        <h2>National Service Scheme (NSS)</h2>
+        <ul>
+            <li>Community service and social welfare activities.</li>
+            <li>Blood donation camps and health awareness programs.</li>
+            <li>Tree plantation drives and environmental conservation.</li>
+            <li>Annual NSS camps in rural areas.</li>
+        </ul>
+    </section>
+
+    <!-- YDS Section -->
+    <section id="yds" class="hidden">
+        <h2>Youth Development Scheme (YDS)</h2>
+        <ul>
+            <li>Leadership training programs.</li>
+            <li>Workshops on personality development.</li>
+            <li>Entrepreneurship and career guidance sessions.</li>
+            <li>Participation in state and national youth festivals.</li>
+        </ul>
+    </section>
+
+    <!-- YRC Section -->
+    <section id="yrc" class="hidden">
+        <h2>Youth Red Cross (YRC)</h2>
+        <ul>
+            <li>First aid training and disaster management programs.</li>
+            <li>Health and hygiene awareness campaigns.</li>
+            <li>Blood donation and vaccination drives.</li>
+            <li>Participation in Red Cross events.</li>
+        </ul>
+    </section>
+
+    <!-- RRC Section -->
+    <section id="rrc" class="hidden">
+        <h2>Red Ribbon Club (RRC)</h2>
+        <ul>
+            <li>Awareness programs on HIV/AIDS prevention.</li>
+            <li>Workshops on sexual health and wellness.</li>
+            <li>Community outreach programs.</li>
+            <li>Participation in World AIDS Day events.</li>
+        </ul>
+    </section>
+
+    <!-- Exnora Section -->
+    <section id="exnora" class="hidden">
+        <h2>Exnora</h2>
+        <ul>
+            <li>Environmental conservation initiatives.</li>
+            <li>Waste management and recycling programs.</li>
+            <li>Tree plantation and clean campus drives.</li>
+            <li>Participation in eco-friendly campaigns.</li>
+        </ul>
+    </section>
+
+    <!-- Consumer Club Section -->
+    <section id="consumer-club" class="hidden">
+        <h2>Consumer Club</h2>
+        <ul>
+            <li>Awareness programs on consumer rights.</li>
+            <li>Workshops on responsible consumer behavior.</li>
+            <li>Participation in consumer forums and events.</li>
+            <li>Promotion of fair trade practices.</li>
+        </ul>
+    </section>
+
+    <!-- Alumni Section -->
+    <section id="alumni" class="hidden">
+        <h2>Alumni Information</h2>
+        <ul>
+            <li>Alumni meet and networking events.</li>
+            <li>Mentorship programs for current students.</li>
+            <li>Alumni success stories and achievements.</li>
+            <li>Alumni donation and scholarship programs.</li>
+        </ul>
+    </section>
+    <nav>
+        <a href="weknow.html">back</a>
+    </nav>
+    <script>
+        // Function to show a specific section and hide others
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll("section");
+            sections.forEach((section) => {
+                section.classList.add("hidden");
+            });
+
+            // Show the selected section
+            document.getElementById(sectionId).classList.remove("hidden");
+        }
+
+        // Show the placement section by default
+        showSection("placement");
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Department Attendance System</title>
+    <link rel="stylesheet" href="attendance.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="adminPage" class="login-container">
+        <h2>Admin Login</h2>
+        <input type="text" id="userId" placeholder="User ID" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button onclick="admin()">Login</button>
+    </div>
+
+    <!-- Attendance System (Hidden by Default) -->
+    <div id="attendanceSystem" class="hidden">
+        <div class="show">
+        <h1>Multi-Department Attendance System</h1>
+
+        <!-- Department, Program, Year, and Date Selection -->
+        <label for="department">Select Department:</label>
+        <select id="department">
+            <option value="bca">BCA</option>
+            <option value="bba">BBA</option>
+            <option value="mca">MCA</option>
+            <option value="mba">MBA</option>
+            <option value="cs">Computer Science</option>
+            <option value="it">Information Technology</option>
+            <option value="ece">Electronics and Communication</option>
+            <option value="eee">Electrical and Electronics</option>
+            <option value="mech">Mechanical Engineering</option>
+            <option value="civil">Civil Engineering</option>
+            <option value="physics">Physics</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="maths">Mathematics</option>
+            <option value="english">English</option>
+            <option value="economics">Economics</option>
+        </select>
+
+        <label for="program">Select Program:</label>
+        <select id="program">
+            <option value="ug">UG</option>
+            <option value="pg">PG</option>
+        </select>
+
+        <label for="year">Select Year:</label>
+        <select id="year">
+            <option value="1">01</option>
+            <option value="2">02</option>
+            <option value="3">03</option>
+        </select>
+
+        <label for="date">Select Date:</label>
+        <input type="date" id="date" required>
+
+        <button onclick="loadStudents()">View Students</button>
+        <button onclick="saveAttendance()">Save Attendance</button>
+        <button onclick="viewAttendanceHistory()">View Attendance History</button>
+        <button onclick="printAttendanceHistory()">Print Attendance History</button>
+        <button onclick="clearAttendance()">Clear All Attendance</button>
+
+
+        <!-- Attendance Table -->
+        <h2 id="tableHeading">Attendance Table</h2>
+        <table id="attendanceTable">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead >
+            <tbody>
+                <!-- Student rows will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <!-- Attendance History -->
+        <div class="attendance-history" id="attendanceHistory">
+            <h2>Attendance History</h2>
+            <table id="historyTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Attendance history rows will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="attendance.js"></script>
+</body>
+</html>

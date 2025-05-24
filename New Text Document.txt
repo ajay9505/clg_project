@@ -1,0 +1,214 @@
+
+// Login Function
+const API_URL = "http://localhost:3000";
+async function login() {
+    const userId = document.getElementById("userId").value;
+    const password = document.getElementById("password").value;
+
+    const response = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, password })
+    });
+
+    const data = await response.json();
+    if (data.success) {
+        document.getElementById("loginPage").classList.add("hidden");
+        document.getElementById("attendanceSystem").classList.remove("hidden");
+    } else {
+        alert("Invalid User ID or Password");
+    }
+}
+
+// Sample student data for each department, program, and year
+const studentsData = {
+    bca: {
+        ug: {
+            1: [
+                { id: 2401, name: "ABILASH Y" },
+                { id: 2402, name: "ABISHEAK M" }
+            ],
+            2: [
+                { id: 2301, name: "KUMAR M" },
+                { id: 2302, name: "KESAVAN P" }
+            ],
+            3: [
+                { id: 2201, name: "AJAY V" },
+                { id: 2202, name: "ANITHA C" },
+                { id: 2203, name: "ANITHA R" },
+                { id: 2204, name: "ANUSUYA B" }
+            ]
+        },
+    cs : {
+        ug: {
+            1: [
+                { id: 2401, name: "ABI Y" },
+                { id: 2402, name: "ABINAYA M" }
+            ],
+            2: [
+                { id: 2301, name: "NAVEEN KUMAR  M" },
+                { id: 2302, name: "KESAVAN P" }
+            ],
+            3: [
+                { id: 2201, name: "AJAY V" },
+                { id: 2202, name: "ANITHA C" },
+                { id: 2203, name: "ANITHA R" },
+                { id: 2204, name: "ANUSUYA B" }
+            ]
+        },
+        pg: {
+            1: [
+                { id: 2101, name: "ELIYARAJA R" },
+                { id: 2102, name: "AJEESH D" }
+            ],
+            2: [
+                { id: 2001, name: "MURALI M" },
+                { id: 2002, name: "MANASHA K" }
+            ]
+        }
+    },
+    bba: {
+        ug: {
+            1: [
+                { id: 2501, name: "Rahul S" },
+                { id: 2502, name: "Priya S" }
+            ],
+            2: [
+                { id: 2401, name: "Amitha P" },
+                { id: 2402, name: "Neha G" }
+            ],
+            3: [
+                { id: 2201, name: "Vikram K" },
+                { id: 2201, name: "Anjali M" }
+            ]
+        },
+        pg: {
+            1: [
+                { id: 2101, name: "Iniyal A" },
+                { id: 2102, name: "Janshi R" }
+            ],
+            2: [
+                { id: 2001, name: "Kathir P" },
+                { id: 2002, name: "Linu s" }
+            ]
+        }
+    },
+    // Add data for other departments similarly
+}};
+
+// Function to load students based on selected department, program, and year
+function loadStudents() {
+    const department = document.getElementById("department").value;
+    const program = document.getElementById("program").value;
+    const year = document.getElementById("year").value;
+    const tableBody = document.querySelector("#attendanceTable tbody");
+    const tableHeading = document.getElementById("tableHeading");
+
+    // Clear existing rows
+    tableBody.innerHTML = "";
+
+    // Set table heading
+    tableHeading.textContent = `Attendance Table - ${department.toUpperCase()} ${program.toUpperCase()} (Year ${year})`;
+
+    // Get students for the selected department, program, and year
+    const students = studentsData[department][program][year];
+
+    // Add rows for each student
+    students.forEach(student => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${student.id}</td>
+            <td>${student.name}</td>
+            <td class="status">-</td>
+            <td>
+                <button onclick="markAttendance(this, 'present')">Present</button>
+                <button onclick="markAttendance(this, 'absent')">Absent</button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Function to mark attendance
+function markAttendance(button, status) {
+    const row = button.parentElement.parentElement;
+    const statusCell = row.querySelector('.status');
+
+    // Update the status text and style
+    statusCell.textContent = status.toUpperCase();
+    if (status === 'present') {
+        statusCell.className = 'status present';
+    } else if (status === 'absent') {
+        statusCell.className = 'status absent';
+    }
+
+    // Disable the buttons after marking attendance
+    const buttons = row.querySelectorAll('button');
+    buttons.forEach(btn => btn.disabled = true);
+}
+
+// Function to save attendance data
+function saveAttendance() {
+    const department = document.getElementById("department").value;
+    const program = document.getElementById("program").value;
+    const year = document.getElementById("year").value;
+    const date = document.getElementById("date").value;
+
+    if (!date) {
+        alert("Please select a date.");
+        return;
+    }
+
+    const tableBody = document.querySelector("#attendanceTable tbody");
+    const rows = tableBody.querySelectorAll("tr");
+
+    const attendanceData = [];
+    rows.forEach(row => {
+        const studentId = row.cells[0].textContent;
+        const studentName = row.cells[1].textContent;
+        const status = row.cells[2].textContent;
+        attendanceData.push({ studentId, studentName, status });
+    });
+
+    // Save attendance data to local storage
+    const key = `${department}_${program}_${year}_${date}`;
+    localStorage.setItem(key, JSON.stringify(attendanceData));
+
+    alert("Attendance saved successfully!");
+}
+
+// Function to view attendance history
+function viewAttendanceHistory() {
+    const department = document.getElementById("department").value;
+    const program = document.getElementById("program").value;
+    const year = document.getElementById("year").value;
+    const historyTableBody = document.querySelector("#historyTable tbody");
+
+    // Clear existing rows
+    historyTableBody.innerHTML = "";
+
+    // Fetch all keys from local storage
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith(`${department}_${program}_${year}_`)) {
+            const date = key.split("_")[3];
+            const attendanceData = JSON.parse(localStorage.getItem(key));
+
+            attendanceData.forEach(entry => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${date}</td>
+                    <td>${entry.studentId}</td>
+                    <td>${entry.studentName}</td>
+                    <td class="${entry.status.toLowerCase()}">${entry.status}</td>
+                `;
+                historyTableBody.appendChild(row);
+            });
+        }
+    }
+}
+
+// Function to print attendance history
+function printAttendanceHistory() {
+    window.print();
+}

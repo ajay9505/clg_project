@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .form-container h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group input[type="file"] {
+            padding: 5px;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Admission Form</h2>
+        <form action="/submit-admission" method="POST" enctype="multipart/form-data">
+            <!-- Student Details -->
+            <div class="form-group">
+                <label for="name">Student Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="father-name">Father's Name:</label>
+                <input type="text" id="father-name" name="father-name" required>
+            </div>
+            <div class="form-group">
+                <label for="mother-name">Mother's Name:</label>
+                <input type="text" id="mother-name" name="mother-name" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <!-- Educational Details -->
+            <div class="form-group">
+                <label for="10th-percentage">10th Percentage:</label>
+                <input type="number" id="10th-percentage" name="10th-percentage" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="12th-percentage">12th Percentage:</label>
+                <input type="number" id="12th-percentage" name="12th-percentage" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="aadhar">Aadhar Number:</label>
+                <input type="text" id="aadhar" name="aadhar" required>
+            </div>
+            <div class="form-group">
+                <label for="community">Community:</label>
+                <select id="community" name="community" required>
+                    <option value="SC">SC</option>
+                    <option value="ST">ST</option>
+                    <option value="OBC">OBC</option>
+                    <option value="MBC">MBC</option>
+                    <option value="General">General</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="12th-marksheet">Upload 12th Marksheet:</label>
+                <input type="file" id="12th-marksheet" name="12th-marksheet" accept=".pdf,.jpg,.png" required>
+            </div>
+
+            <!-- Degree Options -->
+            <div class="form-group">
+                <label>Select Degree:</label>
+                <input type="radio" id="ug" name="degree" value="UG" required>
+                <label for="ug">UG</label>
+                <input type="radio" id="pg" name="degree" value="PG">
+                <label for="pg">PG</label>
+            </div>
+
+            <!-- UG Departments -->
+            <div class="form-group" id="ug-departments">
+                <label for="ug-department">Select UG Department:</label>
+                <select id="ug-department" name="ug-department">
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Biology">Biology</option>
+                    <option value="Commerce">Commerce</option>
+                    <option value="Economics">Economics</option>
+                    <option value="English">English</option>
+                    <option value="Tamil">Tamil</option>
+                    <option value="History">History</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit">Submit Application</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Show UG departments only if UG is selected
+        document.getElementById('ug').addEventListener('change', function() {
+            document.getElementById('ug-departments').style.display = 'block';
+        });
+        document.getElementById('pg').addEventListener('change', function() {
+            document.getElementById('ug-departments').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department-wise Staff Information</title>
+    <style>
+        /* Neumorphism CSS */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #073f8c;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background-color: #e0e5ec;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+        }
+        header h1 {
+            color: #333;
+            margin: 0;
+        }
+        nav {
+            background-color: #e0e5ec;
+            padding: 15px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 10px;
+            background-color: #e0e5ec;
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.6), -4px -4px 8px rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.6), inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+        }
+        section {
+            background-color: #e0e5ec;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+            width: 80%;
+            max-width: 1200px;
+        }
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+        select {
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #e0e5ec;
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.6), -4px -4px 8px rgba(255, 255, 255, 0.5);
+            border: none;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            background-color: #e0e5ec;
+        }
+        th {
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.6), -4px -4px 8px rgba(255, 255, 255, 0.5);
+        }
+        td {
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.6), inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Department-wise Staff Information</h1>
+    </header>
+    <nav>
+        <a href="weknow.html">back</a>
+    </nav>
+    <section>
+        <h2>Select Department</h2>
+        <select id="department-select" onchange="showDepartmentStaff()">
+            <option value="">-- Select Department --</option>
+            <option value="BCA">BCA</option>
+            <option value="computer-science">Computer Science</option>
+            <option value="mathematics">Mathematics</option>
+            <option value="physics">Physics</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="botany">Botany</option>
+            <option value="zoology">Zoology</option>
+            <option value="electronics">Electronics</option>
+            <option value="tamil">Tamil</option>
+            <option value="english">English</option>
+            <option value="bba">BBA</option>
+            <option value="commerce">Commerce</option>
+            <option value="commerceca">Commerce CA</option>
+            <option value="clp">CLP</option>
+            
+        </select>
+
+        <div id="staff-table"></div>
+    </section>
+
+    <script>
+        // Department-wise staff data
+        const staffData = {
+            "BCA": [
+                { name: "Dr. K. Gokulraj", designation: "Assist Professor(HOD)",qualification:"MCA.,M.Phil.,M.Sc.,M.Phil.,NET.,MBA.,M.Phil.,PGDMCH.,PGDHRM.,ME(CSE).,Ph.D.", mail: "gokulrajk@yahoo.co.in" },
+                { name: "Ms. S.SUBA", designation: "Assist Professor",qualification:"MCA., MPhil., B.Ed.", mail: "saamgopi2314@gmail.com" },
+                { name: "Mr. K.SELVAKUMAR", designation: "Assist Professor",qualification:"MCA., ME.", mail: "kselvakumark1984@gmail.com" }
+            ],
+            "computer-science": [
+                { name: "Mr.A.Thomas Felix", designation: "Assist Professor(HOD)",qualification:"M.Sc.,M.Tech., NET.,MPhil.(Ph.D)", mail: "atf2m4@gmail.com" },
+                { name: "Dr. K. Gokulraj", designation: "Assist Professor",qualification:"MCA.,M.Phil.,M.Sc.,M.Phil.,NET.,MBA.,M.Phil.,PGDMCH.,PGDHRM.,ME(CSE).,Ph.D.", mail: "gokulrajk@yahoo.co.in" },
+                { name: "Dr. K. Bhuvaneswari", designation: "Assist Professor",qualification:"MCA., M.Phil., SET., Ph.D.,", mail: "bhuvaneswarik27@gmail.com" },
+                { name: "Mr. R. Sivarajan", designation: "Assist Professor",qualification:"M.Sc., M.Phil., (Ph.D.,)", mail: "rsivasjs@gmail.com" },
+                { name: "Mr. M. SureshRaja", designation: "Assist Professor",qualification:"MCA., M.Phil., NET.,", mail: "suresh813@gmail.com" },
+                { name: "Mr. S. Kalaiselvan", designation: "Assist Professor",qualification:"B.Sc., MCA.,(M.Phil.,)", mail: "kalai.s857@gmail.com" }
+            ],
+            "mathematics": [
+                { name: "Dr R. Umadevi", designation: "Assist Professor(HOD)",qualification:"MSc., MPhil., BEd.,Ph.D.,", mail: "umaraj1966@gmail.com" },
+                { name: "Ms S. Padmapriya", designation: "Assist Professor",qualification:"MSc., MPhil.", mail: "padmapriyagackul@gmail.com" },
+                { name: "Dr K. Venugopal", designation: "Assist Professor",qualification:"	MSc., MPhil., PhD.", mail: "drvenugopal2013@gmail.com" },
+                { name: "Mr K. Periasamy", designation: "Assist Professor",qualification:"	MSc., MPhil., BEd.", mail: "kpsperiasamy@gmail.com" },
+                { name: "Ms C. Revathi", designation: "Assist Professor",qualification:"MSc., MPhil., BEd.", mail: "c.reva1987@gmail.com" },
+                { name: "Mr D. John Nelson Raja", designation: "Assist Professor",qualification:"MSc., MPhil., BEd.", mail: "nelsonraja3@gmail.com" },
+                { name: "Dr.M.Indhumathi", designation: "Assist Professor",qualification:"M.Sc., M.Phil., Ph.D.,", mail: "" }
+            ],
+            "physics": [
+                { name: "Dr R. Ramanathan", designation: "Assist Professor(HOD)",qualification:"MSc., MPhil., PhD.", mail: "raoram72@gmail.com" },
+                { name: "Dr S.Sakthivel", designation: "Assist Professor",qualification:"MSc.,Mphil.,Ph.D.,PGDCA.", mail: "st.sak2016@gmail.com" },
+                { name: "Mr S.Sahulhameed	", designation: "Assist Professor",qualification:"MSc., MPhil.,", mail: "" },
+                { name: "Dr G. Umapathy", designation: "Assist Professor",qualification:"	MSc., MPhil.,ME.,MCA.,PhD.", mail: "gumapathy_mce@yahoo.com	" },
+                { name: "Dr B. Raja", designation: "Assist Professor",qualification:"MSc., MPhil.,B.Ed., PGDCA.,PhD.", mail: "pbsraja2006@gmail.com" },
+                { name: "Dr M. Sangari", designation: "Assist Professor",qualification:"MSc., MPhil., BEd.,PhD.", mail: "sangarimayavan@gmail.com" },
+            ],
+            "chemistry": [
+                { name: "Dr.K.Balasubramani", designation: "Assist Professor(HOD)",qualification:"MSc., PhD.", mail: "manavaibala@gmail.com" },
+                { name: "Dr. V. Manivel", designation: "Assist Professor",qualification:"M.Sc.,M.Phil,BEd,Ph.D", mail: "manichem0387@gmail.com" }
+            ],
+            "botany": [
+                { name: "Dr K. Venugopal", designation: "Assist Professor",qualification:"MSc., MPhil., PhD.", mail: "drvenugopal2013@gmail.com" },
+                { name: "Dr. R.Gopi", designation: "Assist Professor",qualification:"M.Sc., M.Phil.,B.Ed.,Ph.D.,", mail: "gopidharish@gmail.com	" },
+                { name: "Dr.K.Kamaleswari", designation: "Assist Professor",qualification:"M.Sc., M.Phil., Ph.D.,", mail: "K.kamaleswari09@gmail.com	" },
+                { name: "Dr Chandrasekar", designation: "Assist Professor",qualification:"M.Sc., M.Phil., Ph.D.,", mail: "chandu.r84@gmail.com	" }
+            ],
+            "zoology": [
+                { name: "Dr. R. Babunath", designation: "Assist Professor(HOD)",qualification:"MSc., MPhil..Ph.D.", mail: "babunath79@gmail.com" },
+                { name: "Dr G. Maheshwari Devi", designation: "Assist Professor",qualification:"M.Sc., M.Phil., Ph.D", mail: "" },
+                { name: "Dr. R. Devi", designation: "Assist Professor",qualification:"M.Sc.,Ph.D.,", mail: "" },
+                { name: "Dr R.Mahalaksumi", designation: "Assist Professor",qualification:"M.Sc.,Ph.D", mail: "" }
+            ],
+            "electronics": [
+                { name: "	Dr P. Anbarasu", designation: "Assist Professor(HOD)",qualification:"MSc.,MPhil.,PGDCA., BEd.,PhD.", mail: "Pon_anbarasu@rediffmail.com" },
+                { name: "Dr R. Mahendran", designation: "Assist Professor",qualification:"MSc.,MPhil.,PhD.", mail: "ishaamahendran@gmail.com" },
+                { name: "	Mr P. Pitchaimuthu", designation: "Assist Professor",qualification:"MSc.,MPhil.,BEd.", mail: "kayapapj@gmail.com" },
+                { name: "Mr P. Veeramurali", designation: "Assist Professor",qualification:"MSc., M.Tech.", mail: "veeramuraliresearch@gmail.com	" },
+                { name: "	Mr R. Ganeshan", designation: "Assist Professor",qualification:"M.Sc.", mail: "ganeshanecs@gmail.com" },
+                { name: "Ms P. Saraswathi", designation: "Assist Professor",qualification:"MSc.,MPhil.", mail: "arunsarawathi@gmail.com" },
+                { name: "Dr.S.Subramani", designation: "Assist Professor",qualification:"M.Sc., M.Phil., Ph.D.,", mail: "" }
+            ],
+            "tamil": [
+                { name: "Dr. A. Jagathesan", designation: "Assist Professor(HOD)",qualification:"MA., MA(Ling).,MPhil.,PhD.", mail: "jaga72try@gmail.com" },
+                { name: "Dr P. Vairamoorthy", designation: "Assist Professor",qualification:"MA., MA(Ling).,MPhil.,B.Ed.,PhD.", mail: "drvairamoorthyptamil@gmail.com" },
+                { name: "Dr K. Gopinathan", designation: "Assist Professor",qualification:"MA., MPhil., BEd., PhD.", mail: "gobinathannisi@gmail.com" },
+                { name: "Dr M. Karnan", designation: "Assist Professor",qualification:"	MA., MPhil., BEd.,Ph.D.", mail: "karna.manickam13@gmail.com" },
+                { name: "Mr R. Jayaraj", designation: "Assist Professor",qualification:"MA., MPhil.", mail: "j7812078580@gmail.com" },
+                { name: "Dr P. Sakthivel", designation: "Assist Professor",qualification:"MA., MPhil., PhD.", mail: "ss6175030@gmail.com" },
+                { name: "Ms R. Vijayalakshmi", designation: "Assist Professor",qualification:"MA., MPhil.", mail: "	vijinithisri@gmail.com" },
+                { name: "Dr. K.Gopalakrishnan	", designation: "Assist Professor",qualification:"M.A., NET.,Ph.D.,SLET.,", mail: "" },
+                { name: "Dr. S.Prabakaran", designation: "Assist Professor",qualification:"M.A., M.Phil.,NET.,JRF.,Ph.D.,", mail: "" },
+                { name: "	Dr. J.Nathi", designation: "Assist Professor",qualification:"M.A., M.Phil.,NET.,JRF,SLET.,Ph.D.,", mail: "" },
+                { name: "	Dr. K.Saravanan", designation: "Assist Professor",qualification:"M.A.,M.Phil.,Ph.D.,NET.,", mail: "" },
+                { name: "Dr. S.Jayasankar", designation: "Assist Professor",qualification:"M.A., Ph.D.,SET.,", mail: "" },
+                { name: "Dr.R.Suresh", designation: "Assist Professor",qualification:"M.A.,M.Phil.,Ph.D.,NET.,", mail: "" }
+            ],
+            "english": [
+                { name: "Dr Hilda M Thenmoli", designation: "Assist Professor",qualification:"MA., MPhil., BEd., PhD.", mail: "hildathenmozhi@gmail.com" },
+                { name: "Mr P. Vijay", designation: "Assist Professor",qualification:"MA., MPhil., BEd.", mail: "vijaykrishna29111983@gmail.com" },
+                { name: "Mr J. Simon Jude", designation: "Assist Professor",qualification:"MA., MPhil.,BEd.", mail: "simonjudej@gmail.com" },
+                { name: "Mr S. Chandru", designation: "Assist Professor",qualification:"MA., MPhil., BEd.", mail: "chandrutrinity@gmail.com" },
+                { name: "Mr M. Sakthivel", designation: "Assist Professor",qualification:"MA., MPhil., BEd.", mail: "	sakthivel10011@gmail.com" },
+                { name: "Ms S. Jayanthi", designation: "Assist Professor",qualification:"MA., MPhil., BEd.", mail: "jayanthis0706@gmail.com" },
+                { name: "Mr A. Packiyarasu", designation: "Assist Professor",qualification:"MA., MPhil., BEd.", mail: "pakiyarasulic@gmail.com" },
+                { name: "Ms K. Kanaga", designation: "Assist Professor",qualification:"MA., MPhil.", mail: "kltkanaga@gmail.com" },
+                { name: "Ms A. Vennila", designation: "Assist Professor",qualification:"MA., MPhil.", mail: "vennilaprabakaran@gmail.com" },
+                { name: "Ms R.Subathra", designation: "Assist Professor",qualification:"M.A.,M.Phil.", mail: "	subathravairamoorthy@gamil.com" },
+                { name: "Dr. A. Saravanan", designation: "Assist Professor",qualification:"M.A., M.Phil., Ph.D.,", mail: "" },
+                { name: "Mr.K.NEVIN MARTIN", designation: "Assist Professor",qualification:"", mail: "" }
+            ],
+            "bba": [
+            { name: "Mr. B. Venkatesan", designation: "Assist Professor",qualification:"MBA.", mail: "" },
+            { name: "Mr V. Ravichandran", designation: "Assist Professor",qualification:"MBA., MPhil., PGDPM& LL., PhD.", mail: "chandruaplo@gmail.com" },
+            { name: "Dr S. Saravanakumar", designation: "Assist Professor",qualification:"MCom., BEd., MBA., MPhil., PhD.", mail: "drssk81@gmail.com" },
+            { name: "Dr M. C. Balagurubaran", designation: "Assist Professor",qualification:"MBA., MPhil., PhD.", mail: "cmanochakra2007@yahoo.co.in" },
+            { name: "Dr R. Sivakumar", designation: "Assist Professor",qualification:"MBA., MPhil., PhD.", mail: "sivamanagement.au@gmail.com" },
+            { name: "Dr.N.Rajarajeshwaran", designation: "Assist Professor",qualification:"", mail: "" }
+                
+            ],
+            "commerce": [
+            { name: "	Dr V. Periyasamy", designation: "Assist Professor",qualification:"MCom.,MPhil., PhD.", mail: "vpsamy68@gmail.com" },
+            { name: "Dr V. Kalaivani", designation: "Assist Professor",qualification:"MCom., MBA., MPhil., PhD.", mail: "kalaivaniraja.v@gmail.com" },
+            { name: "Mr S. Dhilipkumar", designation: "Assist Professor",qualification:"MCom., MPhil.", mail: "dhilipkumargac@gmail.com" },
+            { name: "	Mr S. Senthilkumar", designation: "Assist Professor",qualification:"MCom., MPhil.", mail: "senthilkumar.1207@gmail.com" },
+            { name: "Dr. A. Prakash", designation: "Assist Professor",qualification:"MCom.,MPhil., PhD.", mail: "" }
+            ],
+            "commerceca": [
+            { name: "Dr V. Periyasamy", designation: "Assist Professor",qualification:"MCom.,MPhil., PhD.", mail: "vpsamy68@gmail.com" },
+            { name: "Dr S. Iswaryalakshmi", designation: "Assist Professor",qualification:"MCom., MPhil.,PGDCA., PhD.", mail: "iswaryasaran@gmail.com" },
+            ],
+            "clp": [
+            { name: "Ms S. Padmapriya", designation: "Associate Professor and Co-ordinatore",qualification:"M.Sc.,M.Phil.,", mail: "padmapriyagackul@gmail.com" },
+            { name: "P.Prakashbabu", designation: "Computer Instructor & Programmer",qualification:"M.Sc.,M.Phil.,", mail: "prakashbabu2896@gmail.com" },
+            { name: "R.Krishnaveni", designation: "Computer Instructor & Programmer",qualification:"M.Sc.,M.Phil.,", mail: "rkvenijivanthi@gmail.com" },
+            { name: "G.Priya", designation: "Computer Instructor & Programmer",qualification:"M.Sc.,M.Phil.,", mail: "priyareva95@gmail.com" },
+            { name: "D.Vimal Bhasini", designation: "Computer Instructor & Programmer",qualification:"M.Sc.,M.Phil.,B.Ed.,", mail: "vimalbhasinimsc@gmail.com" }
+            ]
+
+            };
+
+        // Function to display staff information based on selected department
+        function showDepartmentStaff() {
+            const select = document.getElementById("department-select");
+            const department = select.value;
+            const staffTable = document.getElementById("staff-table");
+
+            if (department && staffData[department]) {
+                let tableHTML = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Name</th>
+                                <th>Designation</th>
+                                <th>Qualification</th>
+                                <th>E-mail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+                staffData[department].forEach((staff, index) => {
+                    tableHTML += `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${staff.name}</td>
+                            <td>${staff.designation}</td>
+                            <td>${staff.qualification}</td>
+                            <td>${staff.mail}</td>
+                        </tr>
+                    `;
+                });
+
+                tableHTML += `
+                        </tbody>
+                    </table>
+                `;
+
+                staffTable.innerHTML = tableHTML;
+            } else {
+                staffTable.innerHTML = "";
+            }
+        }
+    </script>
+</body>
+</html>

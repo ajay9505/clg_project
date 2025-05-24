@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facilities Details</title>
+    <style>
+        /* Neumorphism CSS */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #073f8c;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background-color: #e0e5ec;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+        }
+        header h1 {
+            color: #333;
+            margin: 0;
+        }
+        nav {
+            background-color: #e0e5ec;
+            padding: 15px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 10px;
+            background-color: #e0e5ec;
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.6), -4px -4px 8px rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.6), inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+        }
+        section {
+            background-color: #e0e5ec;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+            width: 80%;
+            max-width: 800px;
+        }
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #e0e5ec;
+            border-radius: 10px;
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.6), -4px -4px 8px rgba(255, 255, 255, 0.5);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Facilities Details</h1>
+    </header>
+    <nav>
+        <a href="#" onclick="showSection('library')">Library</a>
+        <a href="#" onclick="showSection('laboratories')">Laboratories</a>
+        <a href="#" onclick="showSection('sports')">Sports</a>
+        <a href="#" onclick="showSection('hostel')">Hostel</a>
+        <a href="#" onclick="showSection('cafeteria')">Cafeteria</a>
+    </nav>
+
+    <!-- Library Section -->
+    <section id="library">
+        <h2>Library</h2>
+        <ul>
+            <li>Over 50,000 books and journals.</li>
+            <li>Digital library with access to e-books and online journals.</li>
+            <li>Quiet study areas and group discussion rooms.</li>
+            <li>Open from 8:00 AM to 8:00 PM.</li>
+        </ul>
+    </section>
+
+    <!-- Laboratories Section -->
+    <section id="laboratories" class="hidden">
+        <h2>Laboratories</h2>
+        <ul>
+            <li>State-of-the-art computer labs with high-speed internet.</li>
+            <li>Physics, Chemistry, and Biology labs with modern equipment.</li>
+            <li>24/7 access for research students.</li>
+            <li>Dedicated lab assistants for support.</li>
+        </ul>
+    </section>
+
+    <!-- Sports Section -->
+    <section id="sports" class="hidden">
+        <h2>Sports</h2>
+        <ul>
+            <li>Indoor and outdoor sports facilities.</li>
+            <li>Basketball, volleyball, and badminton courts.</li>
+            <li>Gymnasium with modern equipment.</li>
+            <li>Annual sports day and inter-college tournaments.</li>
+        </ul>
+    </section>
+
+    <!-- Hostel Section -->
+    <section id="hostel" class="hidden">
+        <h2>Hostel</h2>
+        <ul>
+            <li>Separate hostels for boys and girls.</li>
+            <li>24/7 security and CCTV surveillance.</li>
+            <li>Wi-Fi, laundry, and mess facilities.</li>
+            <li>Recreational rooms with TV and games.</li>
+        </ul>
+    </section>
+
+    <!-- Cafeteria Section -->
+    <section id="cafeteria" class="hidden">
+        <h2>Cafeteria</h2>
+        <ul>
+            <li>Spacious and hygienic cafeteria.</li>
+            <li>Variety of cuisines and snacks available.</li>
+            <li>Open from 7:00 AM to 10:00 PM.</li>
+            <li>Comfortable seating and Wi-Fi access.</li>
+        </ul>
+    </section>
+    <nav>
+        <a href="weknow.html">back</a>
+    </nav>
+    <script>
+        // Function to show a specific section and hide others
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll("section");
+            sections.forEach((section) => {
+                section.classList.add("hidden");
+            });
+
+            // Show the selected section
+            document.getElementById(sectionId).classList.remove("hidden");
+        }
+
+        // Show the library section by default
+        showSection("library");
+    </script>
+</body>
+</html>

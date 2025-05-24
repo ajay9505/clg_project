@@ -1,0 +1,28 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  background-color: pink;
+}
+.name{
+  text-align: center;
+  height: 100px;
+  width: 100%;
+  background-color: gray;
+}
+.center{
+  position: relative;
+  left: 130px;
+}
+.size{
+  height: 30px;
+}
+
+.two{
+  position: relative;
+  left: 30px;
+}
+.center{
+  position: relative;
+  right: 50%;
+  bottom: 20px;
+}
